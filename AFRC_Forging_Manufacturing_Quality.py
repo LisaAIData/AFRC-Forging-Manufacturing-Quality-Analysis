@@ -207,6 +207,26 @@ part23_new['part23_error'] = part23_error        # Create a new column for part 
 part23_new.head()
 
 
+
+x,y= part23_new.iloc[:, 0:-1], part23_new.loc[:, 'part23_error'] # get sensor values as x,  part23_error as y
+sensors = list(part23_new.iloc[:, 0:-1].columns) # get feature names
+
+
+# In[68]:
+
+
+# get correlation analysis
+plt.figure(figsize = (40,30))
+colmn = part23_new.columns.tolist() # list name
+mcorr = part23_new[colmn].corr(method='spearman') # get the spearman correlation axis
+
+mask = np.zeros_like(mcorr, dtype=np.bool) 
+mask[np.triu_indices_from(mask)] = True #Triangle size
+cmap = sns.diverging_palette(220, 10, as_cmap=True) # return matplotlib colormap figures
+g = sns.heatmap(mcorr,mask = mask, cmap = cmap, square=True, annot=True, fmt='0.2f') #get the heatmap of correlation
+plt.show()
+
+
 # In[50]:
 
 
@@ -264,6 +284,19 @@ part28_error = cmm_part['total_error'].iloc[1]   # Get the Part28's total error,
 part28_new['part28_error'] = part28_error        # Create a new column for part 28's error
 part28_new.head()
 
+
+
+
+# get correlation analysis
+plt.figure(figsize = (40,30))
+colmn = part28_new.columns.tolist() # list name
+mcorr = part28_new[colmn].corr(method='spearman') # get the spearman correlation axis
+
+mask = np.zeros_like(mcorr, dtype=np.bool) 
+mask[np.triu_indices_from(mask)] = True #Triangle size
+cmap = sns.diverging_palette(220, 10, as_cmap=True) # return matplotlib colormap figures
+g = sns.heatmap(mcorr,mask = mask, cmap = cmap, square=True, annot=True, fmt='0.2f') #get the heatmap of correlation
+plt.show()
 
 # In[54]:
 
@@ -331,6 +364,16 @@ part32_new.head()
 
 # In[58]:
 
+# get correlation analysis
+plt.figure(figsize = (40,30))
+colmn = part32_new.columns.tolist() # list name
+mcorr = part32_new[colmn].corr(method='spearman') # get the spearman correlation axis
+
+mask = np.zeros_like(mcorr, dtype=np.bool) 
+mask[np.triu_indices_from(mask)] = True #Triangle size
+cmap = sns.diverging_palette(220, 10, as_cmap=True) # return matplotlib colormap figures
+g = sns.heatmap(mcorr,mask = mask, cmap = cmap, square=True, annot=True, fmt='0.2f') #get the heatmap of correlation
+plt.show()
 
 x,y= part32_new.iloc[:, 0:-1], part32_new.loc[:, 'part32_error']
 
